@@ -22,3 +22,13 @@ You can try our demo instance here: https://vroom.im
 Check documentation [here](https://vroom.im/documentation)
 
 You can also subscribe to the dev mailing list [here](http://list.vroom.im/mailman/listinfo/vroom-dev)
+
+Ubuntu install instructions:
+sudo apt-get install libmime-lite-perl libmime-encwords-perl libdbi-perl libdbd-mysql-perl libarray-diff-perl libtest-pod-coverage-perl libtest-perl-critic-perl libmojolicious-perl libmodule-build-perl libjavascript-minifier-perl libfile-slurp-perl libcss-minifier-perl libtest-simple-perl libregexp-common-perl libpod-simple-perl libfile-sharedir-perl libtest-pod-perl libtest-minimumversion-perl libtest-cpan-meta-perl perl-base perl-modules libjson-perl perl libcpan-meta-perl libcrypt-saltedhash-perl libemail-valid-perl libexcel-writer-xlsx-perl liblocale-maketext-lexicon-perl libconfig-simple-perl libdatetime-perl
+sudo cpan -i Mojolicious::Plugin::Mail 
+sudo cpan -i Mojolicious::Plugin::Database 
+sudo cpan -i Mojolicious::Plugin::StaticCompressor 
+sudo cpan -i Mojolicious::Plugin::RenderFile 
+sudo cpan -i Protocol::SocketIO 
+sudo cpan -i Protocol::Redis Mojo::Redis2 
+sudo cpan -i Session::Token 
