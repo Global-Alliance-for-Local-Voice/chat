@@ -1,0 +1,103 @@
+CREATE TABLE `config` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key` VARCHAR(40) NOT NULL,
+  `value` VARCHAR(40) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE (`key`)
+) ENGINE INNODB DEFAULT CHARSET=utf8;
+INSERT INTO `config` (`key`,`value`)
+  VALUES ('schema_version', '8');
+
+CREATE TABLE `session_keys` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key` VARCHAR(160) NOT NULL,
+  `date` DATETIME NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX (`date`)
+) ENGINE INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `rooms` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(120) NOT NULL,
+  `create_date` DATETIME DEFAULT NULL,
+  `last_activity` DATETIME DEFAULT NULL,
+  `locked` TINYINT UNSIGNED DEFAULT '0',
+  `ask_for_name` TINYINT UNSIGNED DEFAULT '0',
+  `join_password` VARCHAR(160) DEFAULT NULL,
+  `owner_password` VARCHAR(160) DEFAULT NULL,
+  `etherpad_group` VARCHAR(40) DEFAULT NULL,
+  `token` VARCHAR(160) NOT NULL,
+  `realm` VARCHAR(160) DEFAULT NULL,
+  `persistent` TINYINT UNSIGNED DEFAULT '0',
+  `max_members` TINYINT UNSIGNED DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE (`name`),
+  INDEX (`last_activity`)
+) ENGINE INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `email_notifications` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `room_id` INT UNSIGNED NOT NULL,
+  `email` VARCHAR(254),
+  PRIMARY KEY (`id`),
+  UNIQUE (`room_id`, `email`),
+  FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+) ENGINE INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `email_invitations` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `room_id` INT UNSIGNED NOT NULL,
+  `email` VARCHAR(254) NOT NULL,
+  `token` VARCHAR(160) NOT NULL,
+  `from` VARCHAR(60) NOT NULL,
+  `response` VARCHAR(20) DEFAULT NULL,
+  `message` TEXT DEFAULT NULL,
+  `processed` TINYINT DEFAULT '0',
+  `date` DATETIME DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE (`token`),
+  FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+) ENGINE INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `api_keys` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `token` VARCHAR(160) NOT NULL,
+  `admin` TINYINT UNSIGNED DEFAULT '0',
+  `not_after` DATETIME DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE (`token`),
+  INDEX (`not_after`)
+) ENGINE INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `room_keys` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `room_id` INT UNSIGNED NOT NULL,
+  `key_id` INT UNSIGNED NOT NULL,
+  `role` ENUM('owner', 'participant') DEFAULT 'participant',
+  PRIMARY KEY (`id`),
+  UNIQUE (`room_id`, `key_id`),
+  FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+  FOREIGN KEY (`key_id`) REFERENCES `api_keys` (`id`)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+) ENGINE INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `audit` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `date` DATETIME NOT NULL,
+  `event` VARCHAR(255) NOT NULL,
+  `from_ip` VARCHAR(45) DEFAULT NULL,
+  `user` VARCHAR(255) DEFAULT NULL,
+  `message` TEXT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX (`date`),
+  INDEX (`event`),
+  INDEX (`from_ip`),
+  INDEX (`user`),
+) ENGINE INNODB DEFAULT CHARSET=utf8;

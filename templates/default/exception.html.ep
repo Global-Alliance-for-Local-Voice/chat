@@ -1,0 +1,4 @@
+% stash msg  => l('SERVER_ERROR');
+% stash err  => 'server_error';
+% stash room => '';
+%= include 'error'

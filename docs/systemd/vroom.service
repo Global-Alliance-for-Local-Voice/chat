@@ -1,0 +1,19 @@
+[Unit]
+Description=VROOM daemon
+After=mariadb.service
+Wants=mariadb.service httpd.service
+
+[Service]
+Type=simple
+ExecStart=/opt/vroom/script/start_server.pl
+PrivateTmp=yes
+User=vroom
+Group=vroom
+SyslogIdentifier=vroom
+InaccessibleDirectories=/home
+ReadOnlyDirectories=/usr
+ReadOnlyDirectories=/etc
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

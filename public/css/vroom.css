@@ -1,0 +1,287 @@
+.navbar-btn-group {
+  border-color: transparent !important;
+}
+a.popup>span {
+  color: grey;
+}
+#webRTCVideo {
+  overflow-y: auto;
+}
+#webRTCVideo video {
+  width: 100%;
+  height: auto;
+}
+#webRTCVideo .selected {
+  opacity: 0.7;
+}
+.latencyUnknown{
+  box-shadow: 0px 0px 2pt 2pt grey;
+}
+.latencyGood {
+  box-shadow: 0px 0px 2pt 2pt #5CB85C;
+}
+.latencyMedium {
+  box-shadow: 0px 0px 2pt 2pt #428BCA;
+}
+.latencyWarn {
+  box-shadow: 0px 0px 2pt 2pt #F0AD4E;
+}
+.latencyPoor {
+  box-shadow: 0px 0px 2pt 2pt #D9534F;
+}
+#mainVideo{
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+#mainVideo video {
+  width: 100% !important;
+  height: auto;
+}
+.previewContainer{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .previewContainer:nth-child(2n+1){
+    clear: left;
+  }
+}
+@media screen and (max-width: 767px) {
+  .previewContainer:nth-child(4n+1){
+    clear: left;
+  }
+}
+.volumeBar {
+  position: absolute;
+  width: 5px;
+  height: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: #12acef;
+}
+.muted {
+  position: absolute;
+  right: 25px;
+  top: 0px;
+}
+.muted:before{
+  font-family: 'Glyphicons Halflings';
+  font-size: 1.5em;
+  color: red;
+  content: "\e036";
+}
+.paused{
+  position: absolute;
+  right: 56px;
+  top: 0px;
+}
+.paused:before{
+  font-family: 'Glyphicons Halflings';
+  color: red;
+  font-size: 1.5em;
+  content: "\e059";
+}
+.owner{
+  position: absolute;
+  left: 20px;
+  top: 0px;
+}
+.owner:before{
+  font-family: 'Glyphicons Halflings';
+  color: red;
+  font-size: 1.5em;
+  content: "\e124";
+}
+.noWebcam{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  margin-left: -25px;
+}
+.noWebcam:before{
+  font-family: 'Glyphicons Halflings';
+  color: grey;
+  font-size: 4em;
+  content: "\e008";
+}
+.displayName {
+  text-align: center;
+  font-weight: bold;
+  border-radius: 8px;
+  word-wrap: break-word;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.publicForm {
+  max-width: 800px;
+  margin: auto;
+}
+#roomToolBar {
+  overflow: visible !important;
+}
+.ownerEl {
+  display: none;
+}
+.unauthEl{
+  display: none;
+}
+.ownerActions {
+  position: absolute;
+  left: 15px;
+  top: 0px;  
+  display: none;
+}
+.aloneEl {
+  display: none;
+}
+#unreadMsg {
+  display: none;
+}
+#mainVideo {
+  display: none;
+}
+.hidden-form {
+  display: none;
+}
+.actionMute:before{
+  font-family: 'Glyphicons Halflings';
+  content: "\e036";
+}
+.actionPause:before{
+  font-family: 'Glyphicons Halflings';
+  content: "\e059";
+}
+.actionPromote:before{
+  font-family: 'Glyphicons Halflings';
+  content: "\e124";
+}
+.actionKick:before{
+  font-family: 'Glyphicons Halflings';
+  content: "\e083";
+}
+#emailNotificationList {
+  padding-right: 12px;
+  padding-left: 12px;
+}
+#etherpadContainer {
+  display: none;
+  height: auto;
+  overflow-y: scroll;
+}
+#chatBox {
+  max-height:300px;
+  resize:none;
+}
+#chatContainer {
+  width: 600px;
+}
+#chatHistory{
+  width: 100%;
+  height: 200px;
+  overflow: auto;
+}
+.chatMsgContainer {
+  margin-right: 3px;
+  margin-left: 3px;
+}
+.chatMsg {
+  max-width: 75%;
+  border-radius: 8px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  word-wrap: break-word;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  white-space: pre;
+}
+.chatMsg a {
+  color: black;
+}
+.chatMsgSelf {
+  float: right;
+}
+.chatMsgOthers {
+  float: left;
+}
+#chatMenu {
+  margin-bottom: 15px;
+}
+#chromeExtMessage {
+  text-align: center;
+}
+#navBarLogo {
+  padding-top: 2px;
+  float: left;
+  position: absolute;
+}
+.carouselLogo {
+  margin: auto;
+  padding: 20px;
+}
+.carouselIndexItem {
+  height: 350px !important;
+  text-align: center;
+}
+.carouselIndexCaption {
+  color: grey;
+}
+.carouselIndexIndicator li {
+  background-color: grey;
+}
+.carouselIndexIndicator .active {
+  background-color: red;
+}
+.modal-body {
+  text-align: justify;
+  text-justify: inter-word;
+}
+.btn-full {
+  width: 100% !important;
+}
+.btn {
+  white-space:normal !important;
+  word-wrap:break-word; 
+}
+.header-btn-group {
+  margin-left: 10px;
+}
+.toc {
+  overflow-y: auto;
+  margin-top: 20px;
+}
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+}
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -50px;
+  padding: 0 0 50px;
+}
+#footerContainer{
+  height: 50px;
+  background-color: #F8F8F8;
+  border-top: solid #E7E7E7 2px;
+}
+.footer{
+  padding-top: 10px;
+}
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 1.2em;
+  }
+}

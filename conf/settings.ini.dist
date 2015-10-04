@@ -1,0 +1,95 @@
+[database]
+; Database access settings
+;dsn = 'DBI:mysql:database=devroom;host=localhost'
+;user = 'vroom'
+;password = 'password'
+; Redis server URI
+;redis = 'redis://127.0.0.1:6379'
+
+[turn]
+; The stun server sent to client. You can set it to your own stun server. Takes a comma separated list of full 
+; stun uri as defined by rfc7064
+;stun_server = 'stun:stun.l.google.com:19302','stun:vroom.example.net:3478'
+; The turn server sent to cliet, you should set it to your own server. Takes a comma separated list of full
+; turn uri as defined by rfc7065
+;turn_server = 'turns:my-turn-server.net:5349?transport=tcp'
+;
+; How turn creds are managed can be
+; * static: credentials are static (set with turn_user and turn_password), same for every rooms
+;
+; * rest: Use a TURN REST API compatible method and generate credentials on the fly. You need to set "secret_key"
+;         to the secret key you set in your turn server. See http://tools.ietf.org/html/draft-uberti-behave-turn-rest-00
+;         This has been tested with rfc-5766-turn-server but should work with any compatible turn server
+;
+credentials = 'rest'
+; Credentials to use with the "static" method
+;turn_user = 'foo'
+;turn_password = 'bar'
+; Secret key shared with the turn server when using the "rest" method
+;secret_key = 'secret'
+
+[video]
+; Define the max frame rate for video
+; higher will produce better quality streams, but will also require more bandwidth and CPU power
+;frame_rate = 15
+
+[email]
+; Address set in the From field of email sent by VROOM
+;from = 'no-reply@example.com'
+; Recipient of the feedback messages
+;contact = 'admin@example.com'
+; Path to a sendmail compatible binary used to send emails
+;sendmail = '/sbin/sendmail'
+
+[interface]
+; You can customize the "powered by" at the bottom
+;powered_by = '<a href="http://www.firewall-services.com" target="_blank">Firewall Services</a>'
+; Template to use. Must be a directory under the templates dir
+;template = 'default'
+; ID of the chrome extension which will be proposed when sharing screen on Chrome
+;chrome_extension_id = 'ecicdpoejfllflombfanbhfpgcimjddn'
+; demo can be 0 or 1 (anything else is considered 1). When set to 1, it'll display a few
+; pages which would be hidden otherwise (documentation on how to install it for example)
+; Default to 0
+;demo = 0
+
+[rooms]
+; After this amount of time in minutes, rooms without any activity will be purged
+;inactivity_timeout = '60'
+; You can also purge reserved rooms
+;reserved_inactivity_timeout = '86400'
+; A comma separated list of room names you don't want to be reservable
+;common_names = 'test,test1,test123,0,1,2,3,4,5,6,7,8,9,123,1234,12345,a,aa,abc,azerty,qwerty,vroom,foo,bar,baz'
+; A limit of member in any room. As trafic is really p2p, a high number of peers can make things slow
+; or even crash browsers. You can set a limit to garantee a good user experience. 0 (default value) means unlimited
+; This is the upper limit, you can set a different limit per room
+;max_members = 0
+
+[etherpad]
+; If you want to enabled etherpad-lite integratio, you must set
+; the uri of your instance, and the API key
+;uri = 'https://pad.example.com'
+;api_key = 'be0f90cfc412b03c13e956e77d7944352c06a44e5d94da44ebfa79fb63d7e998'
+; If you run vroom and etherpad-lite on different subdomains, you have to set the common part here
+; For exmple, if you use vroom.domain.tld and pad.domain.tld, set domain.tld here
+;base_domain = 'example.com'
+
+[directories]
+; Where to store cache data. Defaults to the cache subdirectory
+; User running VROOM daemon must have write access
+;cache = 'data/cache'
+; Where to store temporary files
+;tmp = 'data/tmp'
+
+[daemon]
+; IP the hypnotoad daemon will listen on. You can use * to bind on every IP/Interface
+;listen_ip = '127.0.0.1'
+; Port used by the hypnotoad daemon
+;listen_port = '8090'
+; server backend. Can be either morbo (DEV) or hypnotoad (PROD)
+; default is hypnotoad
+;backend = 'hypnotoad'
+; Log level of the daemon. Can be debug, info, warn, error or fatal
+; log_level = 'warn'
+; PID file, only used if backend is hypnotoad
+;pid_file = '/tmp/vroom.pid'
